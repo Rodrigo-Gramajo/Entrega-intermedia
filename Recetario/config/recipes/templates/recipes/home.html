@@ -1,0 +1,37 @@
+
+{% extends "recipes/base.html" %}
+<!-- -->
+{% block content %}
+<h1>Recetario de cocina</h1>
+<a>Bienvenido!</a>
+<div class="jumbotron border shadow">
+  <div class="row">
+      <div class="col-md-8 offset-2">
+          <form>
+              <div class="input-group">
+                  <input name="q" type="text" placeholder="Ingrese la receta a Buscar" class="form-control form-control-lg" />
+                  <div class="input-group-append">
+                      <button class="btn btn-dark btn-lg">Buscar</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+{% for recipes in recipes %}
+<div class="card my-4">
+  <div class="card-body">
+    <h5 class="card-title">{{ recipes.title }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ recipes.author }}</h6>
+    <h6 class="card-subtitle mb-2 text-muted"> {{ object.categoria }}</h6>
+    Ingredientes 
+    <p class="card-text">{{ recipes.ingredientes }}</p>
+    <h6 class="card-subtitle mb-2 text-muted">
+      {{ recipes.updated_at|date:"F d, Y" }}
+    </h6>
+    <a href="{% url 'recipes-detail' recipes.pk %}" class="card-link">Ver receta</a>
+  </div>
+</div>
+{% endfor %}
+<!-- -->
+{% endblock content %}
